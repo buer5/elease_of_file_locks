@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文件占用一键解除</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div data-tauri-drag-region class="titlebar">
+      <div class="titlebar-button" id="titlebar-minimize">
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 5.5H10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="titlebar-button" id="titlebar-close">
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L10 10M10 1L1 10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <div id="app">
+      <!-- Settings UI -->
+      <div id="install-ui" class="view hidden">
+        <div style="display: flex; justify-content: space-between; width: 85%; align-items: center; margin-bottom: 15px;">
+          <h2 data-i18n="settings" style="margin: 0;">Settings</h2>
+          <select id="lang-select" style="font-size: 12px; padding: 2px;">
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="zh-TW">繁體中文</option>
+            <option value="zh-CN">简体中文</option>
+          </select>
+        </div>
+        <div class="actions">
+          <button id="btn-install" data-i18n="installMenu">Add to Context Menu</button>
+          <button id="btn-uninstall" data-i18n="uninstallMenu">Remove Context Menu</button>
+          <button id="btn-autostart" data-i18n="autostart">Enable Auto-Start</button>
+        </div>
+      </div>
+
+      <!-- Unlocker UI -->
+      <div id="unlock-ui" class="view hidden">
+        <p class="path"><span data-i18n="fileLabel">File: </span><span id="target-path"></span></p>
+        
+        <div class="table-container">
+          <table id="process-table">
+            <thead>
+              <tr>
+                <th width="15%" data-i18n="pid">PID</th>
+                <th width="50%" data-i18n="name">Process Name</th>
+                <th width="15%" data-i18n="status">Status</th>
+                <th width="20%"></th>
+              </tr>
+            </thead>
+            <tbody id="process-list">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
